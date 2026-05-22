@@ -67,6 +67,7 @@ body{
     padding:15px;
     border-radius:55px;
     display: flex;
+    margin-left: -200px;
 }
 
 /* TABLE */
@@ -74,7 +75,8 @@ body{
     background:lightcyan;
     margin:20px;
     padding:20px;
-    border-radius:12px;
+    border-radius:40px;
+    margin-left: -200px;
 }
 
 table{
@@ -93,12 +95,25 @@ th,td{
     background:lightcyan;
     margin:20px;
     padding:20px;
-    border-radius:10px;
+    border-radius:40px;
+    margin-left: -200px;
 }
 
 /* TEXT */
 h3{
     color:white;
+}
+
+.main{
+    margin-left:250px;
+    min-height:100vh;
+    position:relative;
+}
+
+.form-alani{
+    position:absolute;
+    bottom:400px;
+    background: white;
 }
 
 </style>
@@ -125,6 +140,16 @@ h3{
 
 <!-- MAIN -->
 <div class="main">
+      <!-- diğer içerikler -->
+
+    <div class="form-alani">
+        <input id="kitap" placeholder="Kitap adı">
+
+        <input id="uye" placeholder="Üye adı">
+
+        <button onclick="oduncVer()">Ver</button>
+    </div>
+<ul id="liste"></ul>
 
     <!-- TOP -->
     <div class="top">
@@ -165,6 +190,35 @@ h3{
     </div>
 
 </div>
+<script>
+function oduncVer(){
 
+    let oduncler = JSON.parse(localStorage.getItem("oduncler")) || [];
+
+    let kitap = document.getElementById("kitap").value;
+    let uye = document.getElementById("uye").value;
+
+    oduncler.push({kitap, uye});
+
+    localStorage.setItem("oduncler", JSON.stringify(oduncler));
+
+    listele();
+}
+
+function listele(){
+
+    let oduncler = JSON.parse(localStorage.getItem("oduncler")) || [];
+
+    let liste = document.getElementById("liste");
+
+    liste.innerHTML = "";
+
+    oduncler.forEach(o => {
+        liste.innerHTML += "<li>" + o.kitap + " → " + o.uye + "</li>";
+    });
+}
+
+listele();
+</script>
 </body>
 </html>
