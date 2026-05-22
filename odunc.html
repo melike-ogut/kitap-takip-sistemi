@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Ödünç Alma</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+/* BODY */
+body{
+    display:flex;
+    background:lightblue;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    padding:20px;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar a{
+    display:block;
+    color:blueviolet;
+    text-decoration:none;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:8px;
+    text-align: left;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#6366f1;
+    color:white;
+}
+
+/* MAIN */
+.main{
+    margin-left:250px;
+    width:100%;
+    padding:20px;
+}
+
+/* TOP BAR */
+.top{
+    background:#0f172a;
+    color:white;
+    padding:15px;
+    border-radius:55px;
+    display: flex;
+}
+
+/* TABLE */
+.table{
+    background:lightcyan;
+    margin:20px;
+    padding:20px;
+    border-radius:12px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+/* CONTENT */
+.content{
+    background:lightcyan;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* TEXT */
+h3{
+    color:white;
+}
+
+</style>
+</head>
+
+<body>
+    <nav>
+    <a href="index.html">Ana Sayfa</a> |
+    <a href="kitaplar.html">Kitaplar</a> |
+    <a href="uyeler.html">Üyeler</a> |
+    <a href="hakkinda.html">Hakkında</a> |
+    <a href="odunc.html">Ödünç</a>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>📚 Kütüphane</h2>
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="kitaplar.html">📖 Kitaplar</a>
+    <a href="uyeler.html">👤 Üyeler</a>
+    <a class="active" href="odunc.html">🔄 Ödünç Alma</a>
+    <a href="hakkinda.html">ℹ️ Hakkında</a>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- TOP -->
+    <div class="top">
+        <h3>🔄 ÖDÜNÇ KİTAPLAR</h3>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table">
+        <table>
+            <tr>
+                <th>Üye</th>
+                <th>Kitap</th>
+                <th>Alış Tarihi</th>
+                <th>İade Tarihi</th>
+            </tr>
+
+            <tr>
+                <td>Ahmet Yılmaz</td>
+                <td>Sefiller</td>
+                <td>01.05.2026</td>
+                <td>15.05.2026</td>
+            </tr>
+
+            <tr>
+                <td>Ömer Seyfettin</td>
+                <td>Kaşağı</td>
+                <td>03.05.2026</td>
+                <td>10.05.2026</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <p>Ödünç alma bölümünde kitapların takibi yapılır.</p>
+        <p>İade tarihleri ve kullanıcı bilgileri burada listelenir.</p>
+        <p>Gecikmeler bu ekrandan kontrol edilir.</p>
+    </div>
+
+</div>
+
+</body>
+</html>
