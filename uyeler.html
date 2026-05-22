@@ -5,15 +5,9 @@
 <title>Üyeler</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-}
-
 body{
-    display:flex;
+    margin:0;
+    font-family:Arial;
     background:lightblue;
 }
 
@@ -22,11 +16,9 @@ body{
     width:250px;
     height:100vh;
     background:#0f172a;
-    color:white;
-    padding:20px;
     position:fixed;
-    left:0;
-    top:0;
+    padding:20px;
+    color:white;
 }
 
 .sidebar h2{
@@ -36,7 +28,7 @@ body{
 
 .sidebar a{
     display:block;
-    color:blueviolet;
+    color:white;
     text-decoration:none;
     padding:10px;
     margin-bottom:10px;
@@ -45,246 +37,131 @@ body{
 
 .sidebar a:hover,
 .sidebar a.active{
-    background:#6366f1;
-    color:white;
+    background:#2563eb;
 }
 
 /* MAIN */
 .main{
     margin-left:250px;
-    width:100%;
     padding:20px;
 }
 
-/* TOP */
-.top{
-    background:#0f172a;
-    padding:15px;
-    border-radius:55px;
-    color:white;
-    display:flex;
-    justify-content:space-between;
-}
-
-/* CARDS */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    padding:20px;
-}
-
-.card{
+/* BOX */
+.box{
     background:lightcyan;
-    padding:15px;
-    border-radius:12px;
-}
-
-/* TABLE */
-.table{
-    background:lightcyan;
-    margin:20px;
     padding:20px;
-    border-radius:12px;
-    text-align: center;
+    border-radius:40px;
+    margin-bottom:50px;
+    margin-left: 35px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
+/* INPUT */
+input{
     padding:10px;
-    border-bottom:1px solid #ddd;
+    margin:5px;
 }
 
-/* STATUS */
-.status{
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:12px;
-}
-
-.active{
-    background:#dcfce7;
-    color:green;
-}
-
-/* BUTTONS */
-.btn{
-    padding:5px 10px;
-    border:none;
-    border-radius:8px;
+/* BUTTON */
+button{
+    padding:8px 12px;
     cursor:pointer;
 }
 
-.edit{background:#6366f1;color:white;}
-.delete{background:#ef4444;color:white;}
-
-/* FORM */
-#formBox{
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    width:300px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-#openForm{
-    background:#6366f1;
-    color:white;
-    padding:10px 16px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    margin:20px;
+/* LIST */
+li{
+    margin:8px 0;
 }
 </style>
 </head>
 
 <body>
-    <nav>
-    <a href="index.html">Ana Sayfa</a> |
-    <a href="kitaplar.html">Kitaplar</a> |
-    <a href="uyeler.html">Üyeler</a> |
-    <a href="hakkinda.html">Hakkında</a> |
-    <a href="odunc.html">Ödünç</a>
-</nav>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
     <h2>📚 Kütüphane</h2>
- <a href="index.html">🏠 Ana Sayfa</a>
-<a href="kitaplar.html">📖 Kitaplar</a>
-<a href="uyeler.html">👤 Üyeler</a>
-<a href="odunc.html">🔄 Ödünç Alma</a>
-<a href="hakkinda.html">ℹ️ Hakkında</a>
+
+    <a href="index.html">🏠 Ana Sayfa</a>
+    <a href="kitaplar.html">📖 Kitaplar</a>
+    <a class="active" href="uyeler.html">👤 Üyeler</a>
+    <a href="odunc.html">🔄 Ödünç</a>
+    <a href="hakkinda.html">ℹ️ Hakkında</a>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
-    <div class="top">
-        <h3>👤 ÜYELER</h3>
-        <input id="search" placeholder="Üye ara..." style="padding:6px;border-radius:6px;">
+    <div class="box">
+        <h3>👤 Üye Ekle</h3>
+
+        <input id="ad" placeholder="Ad Soyad">
+        <input id="telefon" placeholder="Telefon">
+        <button onclick="uyeEkle()">Ekle</button>
     </div>
 
-    <!-- CARDS -->
-    <div class="cards">
-        <div class="card">Toplam Üye: <b>120</b></div>
-        <div class="card">Aktif Üye: <b>98</b></div>
-        <div class="card">Pasif Üye: <b>22</b></div>
-        <div class="card">Yeni Üye: <b>8</b></div>
-    </div>
-
-    <!-- TABLE -->
-    <div class="table">
-        <table id="table">
-            <tr>
-                <th>Ad</th>
-                <th>E-posta</th>
-                <th>Telefon</th>
-                <th>Durum</th>
-                <th>İşlem</th>
-            </tr>
-
-            <tr>
-                <td>Ahmet Yılmaz</td>
-                <td>ahmet@mail.com</td>
-                <td>0551</td>
-                <td><span class="status active">Aktif</span></td>
-                <td>
-                    <button class="btn edit">Düzenle</button>
-                    <button class="btn delete" onclick="this.parentElement.parentElement.remove()">Sil</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- BUTON EN ALT -->
-    <button id="openForm">+ Yeni Üye</button>
-
-    <!-- AÇIKLAMA -->
-    <div style="margin:20px;background:lightcyan;padding:15px;border-radius:10px;">
-        Üyeler burada listelenir ve yönetilir.
+    <div class="box">
+        <h3>📋 Üye Listesi</h3>
+        <ul id="liste"></ul>
     </div>
 
 </div>
 
-<!-- FORM -->
-<div id="formBox">
-    <h3>Yeni Üye Ekle</h3>
-
-    <input id="ad" placeholder="Ad" style="width:100%;padding:8px;margin:5px 0;">
-    <input id="email" placeholder="E-posta" style="width:100%;padding:8px;margin:5px 0;">
-    <input id="tel" placeholder="Telefon" style="width:100%;padding:8px;margin:5px 0;">
-
-    <button onclick="ekle()" style="width:100%;background:green;color:white;padding:8px;border:none;">
-        Kaydet
-    </button>
-
-    <button onclick="closeForm()" style="width:100%;background:red;color:white;padding:8px;border:none;margin-top:5px;">
-        Kapat
-    </button>
-</div>
-
-<!-- JS -->
 <script>
 
-// FORM AÇ
-document.getElementById("openForm").onclick = () => {
-    document.getElementById("formBox").style.display = "block";
-};
+// 👤 ÜYE EKLE
+function uyeEkle(){
 
-// FORM KAPAT
-function closeForm(){
-    document.getElementById("formBox").style.display = "none";
-}
+    let uyeler = JSON.parse(localStorage.getItem("uyeler")) || [];
 
-// ÜYE EKLE
-function ekle(){
-    const ad = document.getElementById("ad").value;
-    const email = document.getElementById("email").value;
-    const tel = document.getElementById("tel").value;
+    let ad = document.getElementById("ad").value;
+    let telefon = document.getElementById("telefon").value;
 
-    if(!ad || !email || !tel){
-        alert("Tüm alanları doldur!");
+    if(ad === "" || telefon === ""){
+        alert("Boş bırakma!");
         return;
     }
 
-    const table = document.getElementById("table");
-    const row = table.insertRow();
+    uyeler.push({ad, telefon});
 
-    row.innerHTML = `
-        <td>${ad}</td>
-        <td>${email}</td>
-        <td>${tel}</td>
-        <td><span class="status active">Aktif</span></td>
-        <td>
-            <button class="btn edit">Düzenle</button>
-            <button class="btn delete" onclick="this.parentElement.parentElement.remove()">Sil</button>
-        </td>
-    `;
+    localStorage.setItem("uyeler", JSON.stringify(uyeler));
 
-    closeForm();
+    listele();
+
+    document.getElementById("ad").value = "";
+    document.getElementById("telefon").value = "";
 }
 
-// ARAMA
-document.getElementById("search").addEventListener("input", function(){
-    const value = this.value.toLowerCase();
-    const rows = document.querySelectorAll("#table tr");
+// 🗑️ SİL
+function sil(index){
 
-    rows.forEach((row, i) => {
-        if(i === 0) return;
-        row.style.display = row.textContent.toLowerCase().includes(value) ? "" : "none";
+    let uyeler = JSON.parse(localStorage.getItem("uyeler")) || [];
+
+    uyeler.splice(index, 1);
+
+    localStorage.setItem("uyeler", JSON.stringify(uyeler));
+
+    listele();
+}
+
+// 📋 LİSTELE
+function listele(){
+
+    let uyeler = JSON.parse(localStorage.getItem("uyeler")) || [];
+
+    let liste = document.getElementById("liste");
+
+    liste.innerHTML = "";
+
+    uyeler.forEach((u, index)=>{
+        liste.innerHTML += `
+        <li>
+            👤 ${u.ad} - 📞 ${u.telefon}
+            <button onclick="sil(${index})">Sil</button>
+        </li>`;
     });
-});
+}
+
+// ilk açılış
+listele();
 
 </script>
 
