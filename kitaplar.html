@@ -5,18 +5,9 @@
 <title>Kitaplar</title>
 
 <style>
-
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-}
-
-/* BODY */
 body{
-    display:flex;
+    margin:0;
+    font-family:Arial;
     background:lightblue;
 }
 
@@ -25,11 +16,9 @@ body{
     width:250px;
     height:100vh;
     background:#0f172a;
-    color:white;
-    padding:20px;
     position:fixed;
-    left:0;
-    top:0;
+    padding:20px;
+    color:white;
 }
 
 .sidebar h2{
@@ -39,7 +28,7 @@ body{
 
 .sidebar a{
     display:block;
-    color:blueviolet;
+    color:white;
     text-decoration:none;
     padding:10px;
     margin-bottom:10px;
@@ -48,162 +37,131 @@ body{
 
 .sidebar a:hover,
 .sidebar a.active{
-    background:#6366f1;
-    color:white;
+    background:#2563eb;
 }
 
 /* MAIN */
 .main{
     margin-left:250px;
-    width:100%;
     padding:20px;
 }
 
-/* TOP BAR */
-.top{
-    background:#0f172a;
-    color:white;
-    padding:15px;
-     border-radius: 55px;
-}
-
-/* CARDS */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    padding:20px;
-}
-
-.card{
+/* BOX */
+.box{
     background:lightcyan;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
-}
-
-/* TABLE */
-.table{
-    background:lightcyan;
-    margin:20px;
     padding:20px;
-    border-radius:12px;
+    border-radius:40px;
+    margin-bottom:50px;
+    margin-left: 35px;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
+/* INPUT */
+input{
     padding:10px;
-    border-bottom:1px solid #ddd;
-    text-align:left;
+    margin:5px;
 }
 
-/* CONTENT */
-.content{
-    background:lightcyan;
-    margin:20px;
-    padding:20px;
-    border-radius:10px;
+/* BUTTON */
+button{
+    padding:8px 12px;
+    cursor:pointer;
 }
 
-/* TEXT */
-h3{
-    color:white;
+/* LIST */
+li{
+    margin:8px 0;
 }
-
-b{
-    background:lightcyan;
-}
-
 </style>
 </head>
 
 <body>
-    <nav>
-    <a href="index.html">Ana Sayfa</a> |
-    <a href="kitaplar.html">Kitaplar</a> |
-    <a href="uyeler.html">Üyeler</a> |
-    <a href="hakkinda.html">Hakkında</a> |
-    <a href="odunc.html">Ödünç</a>
-</nav>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
     <h2>📚 Kütüphane</h2>
+
     <a href="index.html">🏠 Ana Sayfa</a>
     <a class="active" href="kitaplar.html">📖 Kitaplar</a>
     <a href="uyeler.html">👤 Üyeler</a>
-    <a href="odunc.html">🔄 Ödünç Alma</a>
+    <a href="odunc.html">🔄 Ödünç</a>
     <a href="hakkinda.html">ℹ️ Hakkında</a>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
-    <!-- TOP -->
-    <div class="top">
-        <h3>📚 KİTAPLAR</h3>
+    <div class="box">
+        <h3>📚 Kitap Ekle</h3>
+
+        <input id="kitapAdi" placeholder="Kitap adı">
+        <input id="yazar" placeholder="Yazar">
+        <button onclick="kitapEkle()">Ekle</button>
     </div>
 
-    <!-- CARDS -->
-    <div class="cards">
-        <div class="card">Toplam Kitap <br><b>350</b></div>
-        <div class="card">Ödünçte <br><b>27</b></div>
-        <div class="card">Uygun Kitap <br><b>258</b></div>
-        <div class="card">Yeni Kitap <br><b>13</b></div>
-    </div>
-
-    <!-- TABLE -->
-    <div class="table">
-        <table>
-            <tr>
-                <th>Kitap Adı</th>
-                <th>Yazar</th>
-                <th>Kategori</th>
-                <th>Durum</th>
-            </tr>
-
-            <tr>
-                <td>Sefiller</td>
-                <td>Victor Hugo</td>
-                <td>Roman</td>
-                <td>Uygun</td>
-            </tr>
-
-            <tr>
-                <td>Lüzumsuz Adam</td>
-                <td>Sait Faik Abasıyanık</td>
-                <td>Hikaye</td>
-                <td>Uygun</td>
-            </tr>
-
-            <tr>
-                <td>Kaşağı</td>
-                <td>Ömer Seyfettin</td>
-                <td>Hikaye</td>
-                <td>Uygun</td>
-            </tr>
-
-        </table>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="content">
-        <p>
-            Kitaplar bölümünde kütüphanedeki tüm kitaplar listelenir.
-        </p>
-        <p>
-            Kitapların yazar bilgisi, kategorisi ve durumu burada takip edilir.
-        </p>
-        <p>
-            Yeni kitap ekleme ve düzenleme işlemleri yapılabilir.
-        </p>
+    <div class="box">
+        <h3>📋 Kitap Listesi</h3>
+        <ul id="liste"></ul>
     </div>
 
 </div>
+
+<script>
+// 📌 KİTAP EKLE
+function kitapEkle(){
+
+    let kitaplar = JSON.parse(localStorage.getItem("kitaplar")) || [];
+
+    let ad = document.getElementById("kitapAdi").value;
+    let yazar = document.getElementById("yazar").value;
+
+    if(ad === "" || yazar === ""){
+        alert("Boş bırakma!");
+        return;
+    }
+
+    kitaplar.push({ad, yazar});
+
+    localStorage.setItem("kitaplar", JSON.stringify(kitaplar));
+
+    listele();
+
+    document.getElementById("kitapAdi").value = "";
+    document.getElementById("yazar").value = "";
+}
+
+// 📌 SİL
+function sil(index){
+
+    let kitaplar = JSON.parse(localStorage.getItem("kitaplar")) || [];
+
+    kitaplar.splice(index, 1);
+
+    localStorage.setItem("kitaplar", JSON.stringify(kitaplar));
+
+    listele();
+}
+
+// 📌 LİSTELE
+function listele(){
+
+    let kitaplar = JSON.parse(localStorage.getItem("kitaplar")) || [];
+
+    let liste = document.getElementById("liste");
+
+    liste.innerHTML = "";
+
+    kitaplar.forEach((k, index)=>{
+        liste.innerHTML += `
+        <li>
+            📖 ${k.ad} - ✍️ ${k.yazar}
+            <button onclick="sil(${index})">Sil</button>
+        </li>`;
+    });
+}
+
+// ilk açılış
+listele();
+</script>
 
 </body>
 </html>
