@@ -5,19 +5,11 @@
 <title>Ödünç Alma</title>
 
 <style>
-
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-}
-
-/* BODY */
 body{
-    display:flex;
+    margin:0;
+    font-family:Arial;
     background:lightblue;
+    display:flex;
 }
 
 /* SIDEBAR */
@@ -25,11 +17,9 @@ body{
     width:250px;
     height:100vh;
     background:#0f172a;
-    color:white;
-    padding:20px;
     position:fixed;
-    left:0;
-    top:0;
+    padding:20px;
+    color:white;
 }
 
 .sidebar h2{
@@ -39,157 +29,98 @@ body{
 
 .sidebar a{
     display:block;
-    color:blueviolet;
+    color:white;
     text-decoration:none;
     padding:10px;
     margin-bottom:10px;
     border-radius:8px;
-    text-align: left;
 }
 
 .sidebar a:hover,
 .sidebar a.active{
-    background:#6366f1;
-    color:white;
+    background:#2563eb;
 }
 
-/* MAIN */
-.main{
-    margin-left:250px;
-    width:100%;
-    padding:20px;
-}
-
-/* TOP BAR */
-.top{
-    background:#0f172a;
-    color:white;
-    padding:15px;
-    border-radius:55px;
-    display: flex;
-    margin-left: -200px;
-}
-
-/* TABLE */
-.table{
-    background:lightcyan;
-    margin:20px;
-    padding:20px;
-    border-radius:40px;
-    margin-left: -200px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:10px;
-    border-bottom:1px solid #ddd;
-    text-align:left;
-}
-
-/* CONTENT */
-.content{
-    background:lightcyan;
-    margin:20px;
-    padding:20px;
-    border-radius:40px;
-    margin-left: -200px;
-}
-
-/* TEXT */
-h3{
-    color:white;
-}
 
 .main{
     margin-left:250px;
-    min-height:100vh;
-    position:relative;
+    padding:20px;
+    width:100%;
 }
 
 .form-alani{
-    position:absolute;
-    bottom:400px;
-    background: white;
+    background:lightcyan;
+    padding:15px;
+    border-radius:10px;
+    width:300px;
+    margin-left:300px;
+
 }
 
+#liste{
+    margin-top:15px;
+    padding:0;
+    list-style:none;
+    margin-left: 110px;
+}
+
+#liste li{
+    background:white;
+    margin-bottom:10px;
+    padding:10px;
+    border-radius:10px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+button{
+    cursor:pointer;
+}
+
+.sil{
+    background:red;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    border-radius:6px;
+}
+
+h3{
+    margin-left: 100px;
+}
 </style>
 </head>
 
 <body>
-    <nav>
-    <a href="index.html">Ana Sayfa</a> |
-    <a href="kitaplar.html">Kitaplar</a> |
-    <a href="uyeler.html">Üyeler</a> |
-    <a href="hakkinda.html">Hakkında</a> |
-    <a href="odunc.html">Ödünç</a>
-</nav>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
     <h2>📚 Kütüphane</h2>
+
     <a href="index.html">🏠 Ana Sayfa</a>
-    <a href="kitaplar.html">📖 Kitaplar</a>
+    <a class="kitaplar.html" href="">📖 Kitaplar</a>
     <a href="uyeler.html">👤 Üyeler</a>
-    <a class="active" href="odunc.html">🔄 Ödünç Alma</a>
+    <a href="active" href="odunc">🔄 Ödünç</a>
     <a href="hakkinda.html">ℹ️ Hakkında</a>
 </div>
 
-<!-- MAIN -->
 <div class="main">
-      <!-- diğer içerikler -->
 
     <div class="form-alani">
         <input id="kitap" placeholder="Kitap adı">
-
         <input id="uye" placeholder="Üye adı">
-
         <button onclick="oduncVer()">Ver</button>
     </div>
-<ul id="liste"></ul>
 
-    <!-- TOP -->
-    <div class="top">
-        <h3>🔄 ÖDÜNÇ KİTAPLAR</h3>
-    </div>
+    <h3>🔄 ÖDÜNÇ KİTAPLAR</h3>
 
-    <!-- TABLE -->
-    <div class="table">
-        <table>
-            <tr>
-                <th>Üye</th>
-                <th>Kitap</th>
-                <th>Alış Tarihi</th>
-                <th>İade Tarihi</th>
-            </tr>
 
-            <tr>
-                <td>Ahmet Yılmaz</td>
-                <td>Sefiller</td>
-                <td>01.05.2026</td>
-                <td>15.05.2026</td>
-            </tr>
-
-            <tr>
-                <td>Ömer Seyfettin</td>
-                <td>Kaşağı</td>
-                <td>03.05.2026</td>
-                <td>10.05.2026</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- CONTENT -->
-    <div class="content">
-        <p>Ödünç alma bölümünde kitapların takibi yapılır.</p>
-        <p>İade tarihleri ve kullanıcı bilgileri burada listelenir.</p>
-        <p>Gecikmeler bu ekrandan kontrol edilir.</p>
-    </div>
+    <ul id="liste"></ul>
 
 </div>
+
 <script>
 function oduncVer(){
 
@@ -198,7 +129,26 @@ function oduncVer(){
     let kitap = document.getElementById("kitap").value;
     let uye = document.getElementById("uye").value;
 
+    if(kitap.trim().length < 2 || uye.trim().length < 2){
+        alert("En az 2 karakter gir!");
+        return;
+    }
+
     oduncler.push({kitap, uye});
+
+    localStorage.setItem("oduncler", JSON.stringify(oduncler));
+
+    document.getElementById("kitap").value = "";
+    document.getElementById("uye").value = "";
+
+    listele();
+}
+
+function sil(index){
+
+    let oduncler = JSON.parse(localStorage.getItem("oduncler")) || [];
+
+    oduncler.splice(index, 1);
 
     localStorage.setItem("oduncler", JSON.stringify(oduncler));
 
@@ -213,12 +163,18 @@ function listele(){
 
     liste.innerHTML = "";
 
-    oduncler.forEach(o => {
-        liste.innerHTML += "<li>" + o.kitap + " → " + o.uye + "</li>";
+    oduncler.forEach((o, i)=>{
+        liste.innerHTML += `
+            <li>
+                ${o.uye} → ${o.kitap}
+                <button class="sil" onclick="sil(${i})">Sil</button>
+            </li>
+        `;
     });
 }
 
 listele();
 </script>
+
 </body>
 </html>
